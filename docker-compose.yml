@@ -9,5 +9,6 @@ services:
       - '2023-2024:2023-2024'
       - '8125:8125/udp'
       - '8126:8126'
+      - '5672:5672'
     volumes:
       - ./.graphite/conf:/opt/graphite/conf

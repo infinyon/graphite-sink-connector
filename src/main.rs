@@ -12,7 +12,7 @@ use amqp::AmqpClient;
 async fn start(config: CustomConfig, mut stream: impl ConsumerStream) -> Result<()> {
     println!("Starting graphite-connector sink connector with {config:?}");
 
-    let amqp_client = AmqpClient::connect(&config.amqp_addrss).await?;
+    let amqp_client = AmqpClient::connect(&config.amqp_addr).await?;
 
     while let Some(Ok(record)) = stream.next().await {
         let value_bytes = record.value();

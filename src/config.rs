@@ -6,5 +6,5 @@ pub(crate) struct CustomConfig {
     /// Metric namespace that you want to populate.
     pub metric_path: String,
     /// Address of the AMQP server.
-    pub amqp_addrss: String,
+    pub amqp_addr: String,
 }

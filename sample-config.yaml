@@ -4,4 +4,5 @@ meta:
   type: graphite-connector-sink
   topic: test-graphite-connector-topic
 custom:
-  foo: bar
+  amqp_addr: amqp://localhost:5672
+  metric_path: bar
