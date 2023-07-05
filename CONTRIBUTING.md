@@ -109,5 +109,10 @@ Then rebuild and execute the container running:
 just stop && just dev
 ```
 
+> **Info** This approach is kinda hacky and requires an extra step to setup the
+> environment, so I decided to open an issue on Graphite Docker Image repository
+> asking for an easier setup. [Check it out here][3].
+
 [1]: https://github.com/graphite-project/docker-graphite-statsd/tree/276a5231d1fa5ab037adfb48abf9f971100e15bf#mapped-ports
 [2]: https://graphite.readthedocs.io/en/latest/feeding-carbon.html#using-amqp
+[3]: https://github.com/graphite-project/docker-graphite-statsd/issues/219

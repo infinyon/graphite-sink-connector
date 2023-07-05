@@ -31,6 +31,7 @@ pub struct GraphiteMessage {
 }
 
 impl GraphiteMessage {
+    /// Create a new [`GraphiteMessage`] instance with system's current timestamp
     pub fn new(metric_path: String, value: String) -> Self {
         Self {
             metric_path,

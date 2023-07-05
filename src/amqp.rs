@@ -1,3 +1,5 @@
+//! Logic related to AMQP connections
+
 use std::ops::Deref;
 
 use lapin::{Connection, ConnectionProperties};
