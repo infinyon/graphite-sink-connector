@@ -2,3 +2,4 @@
 /.hub
 /.graphite
 .DS_Store
+graphite-connector.log
