@@ -4,6 +4,7 @@ use fluvio_connector_common::connector;
 #[derive(Debug)]
 pub(crate) struct CustomConfig {
     /// Metric namespace that you want to populate.
-    #[allow(dead_code)]
     pub metric_path: String,
+    /// Address of the AMQP server.
+    pub amqp_addrss: String,
 }
