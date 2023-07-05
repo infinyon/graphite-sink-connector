@@ -68,4 +68,14 @@ Host  | Container | Service
 
 > Based on [Mapped Ports section from `graphite-project/docker-graphite-statsd`][1] project
 
+### Volumes
+
+The in-container directory `/opt/graphite/conf` is mapped to host's
+`.graphite/conf` directory to allow inspecting graphite's configuration files.
+
+This is relevant when sending events to Graphite via AMQP given that the
+variable `AMQP_METRIC_NAME_IN_BODY` determines the format of the message to
+send to Graphite via AMQP. [Read more on `Feeding In Your Data`][2].
+
 [1]: https://github.com/graphite-project/docker-graphite-statsd/tree/276a5231d1fa5ab037adfb48abf9f971100e15bf#mapped-ports
+[2]: https://graphite.readthedocs.io/en/latest/feeding-carbon.html#using-amqp

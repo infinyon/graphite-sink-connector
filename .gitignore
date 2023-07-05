@@ -1,3 +1,4 @@
 /target
 /.hub
+/.graphite
 .DS_Store
