@@ -1,5 +1,5 @@
 # graphite-connector
 
-<div align="left">
+<div align="center">
   <img src="./docs/images/diagram.png" />
 </div>
