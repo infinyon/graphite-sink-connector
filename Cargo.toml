@@ -1,0 +1,10 @@
+[package]
+name = "graphite-connector"
+version = "0.1.0"
+authors = ["Esteban Borai <estebanborai@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+fluvio = { git = "https://github.com/infinyon/fluvio", rev = "98e548270827672a2ba17729708ff0b13f147181" }
+fluvio-connector-common = { git = "https://github.com/infinyon/fluvio", rev = "98e548270827672a2ba17729708ff0b13f147181", features = ["derive"]}
+serde = { version = "1.0", default-features = false, features = ["derive"]}

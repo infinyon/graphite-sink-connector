@@ -1,0 +1,7 @@
+meta:
+  version: 0.1.0
+  name: my-graphite-connector-test-connector
+  type: graphite-connector-sink
+  topic: test-graphite-connector-topic
+custom:
+  foo: bar
