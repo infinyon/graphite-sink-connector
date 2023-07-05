@@ -9,6 +9,15 @@ services:
       - '2023-2024:2023-2024'
       - '8125:8125/udp'
       - '8126:8126'
-      - '5672:5672'
     volumes:
       - ./.graphite/conf:/opt/graphite/conf
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3.12.1
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - '5672:5672'

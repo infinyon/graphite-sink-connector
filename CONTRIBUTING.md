@@ -94,7 +94,7 @@ ENABLE_AMQP = True
 # useful for testing
 # AMQP_VERBOSE = False
 
-AMQP_HOST = localhost
+AMQP_HOST = rabbitmq
 AMQP_PORT = 5672
 AMQP_VHOST = /
 AMQP_USER = guest
@@ -124,6 +124,12 @@ cdk deploy start -c ./sample-config.yaml --log-level info
 ```bash
 cdk deploy log --name my-graphite-connector-test-connector
 ```
+
+If you follow up this far, then you should be able to see the following output:
+
+<div align="left">
+  <img width="1080" src="./docs/images/process.png" />
+</div>
 
 ### Easily Check Status
 
