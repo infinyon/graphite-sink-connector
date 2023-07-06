@@ -1,6 +1,6 @@
 //! Graphite's resources definitions
 
-use std::time::{SystemTime, UNIX_EPOCH};
+use std::{time::{SystemTime, UNIX_EPOCH}, fmt::Display};
 
 /// Graphite Message
 ///
@@ -45,5 +45,12 @@ impl GraphiteMessage {
         let duration = now.duration_since(UNIX_EPOCH).expect("Time went backwards");
 
         duration.as_secs()
+    }
+}
+
+impl Display for GraphiteMessage {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        // <metric path> <metric value> <metric timestamp>
+        write!(f, "{} {} {}\n", self.metric_path, self.value, self.timestamp)
     }
 }

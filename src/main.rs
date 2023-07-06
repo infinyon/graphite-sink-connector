@@ -2,11 +2,13 @@ mod amqp;
 mod config;
 mod graphite;
 
-use config::CustomConfig;
-use fluvio_connector_common::{connector, consumer::ConsumerStream, Result};
+use fluvio_connector_common::{Result, connector};
+use fluvio_connector_common::consumer::ConsumerStream;
+use fluvio_connector_common::tracing;
 
+use self::amqp::AmqpClient;
+use self::config::CustomConfig;
 use self::graphite::GraphiteMessage;
-use amqp::AmqpClient;
 
 #[connector(sink)]
 async fn start(config: CustomConfig, mut stream: impl ConsumerStream) -> Result<()> {
@@ -19,7 +21,11 @@ async fn start(config: CustomConfig, mut stream: impl ConsumerStream) -> Result<
         let value_utf8 = String::from_utf8_lossy(value_bytes).to_string();
         let message = GraphiteMessage::new(config.metric_path.clone(), value_utf8);
 
-        // println!("{}",record.value().as_ut8_lossy_string());
+        if let Err(err) = amqp_client.publish(&config.metric_path, &message).await {
+            tracing::error!(%err, %message, "Error publishing message to AMQP server");
+        } else {
+            tracing::debug!(%message, "Published message to AMQP server");
+        }
     }
 
     Ok(())

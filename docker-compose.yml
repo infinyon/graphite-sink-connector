@@ -11,6 +11,9 @@ services:
       - '8126:8126'
     volumes:
       - ./.graphite/conf:/opt/graphite/conf
+    environment:
+      #  Enable full debug page display on exceptions (Internal Server Error pages)
+      GRAPHITE_DEBUG: True
     depends_on:
       - rabbitmq
 
