@@ -45,6 +45,8 @@ Visit `http://localhosh:12345` in your browser to access the Dashboard.
   <img width="1080" src="./docs/images/graphite_dashboard.png" />
 </div>
 
+> Use User: `root` and Password: `root` to login
+
 ### Clean Up
 
 ```bash
@@ -100,7 +102,7 @@ AMQP_VHOST = /
 AMQP_USER = guest
 AMQP_PASSWORD = guest
 AMQP_EXCHANGE = graphite
-AMQP_METRIC_NAME_IN_BODY = False
+AMQP_METRIC_NAME_IN_BODY = True
 ```
 
 Then rebuild and execute the container running:
