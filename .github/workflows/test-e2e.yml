@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   test_e2e:
-    name: Run E2E Tests
+    name: E2E Tests
     runs-on: ubuntu-latest
     env:
       RUST_BACKTRACE: full
@@ -45,11 +45,11 @@ jobs:
       - name: Start Containers
         run: docker compose up -d --build
 
-      - name: Setup Rust Toolchain
+      - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
-          profile: minimal
           toolchain: stable
+          profile: minimal
 
       - name: Setup Rust Cache
         uses: Swatinem/rust-cache@v2
@@ -71,12 +71,6 @@ jobs:
 
       - name: Install Fluvio CDK
         run: fluvio install cdk --develop
-
-      - name: Install Rust ${{ matrix.rust }}
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: ${{ matrix.rust }}
-          target: x86_64-unknown-linux-musl
 
       - name: Build Connector
         run: cdk build --target x86_64-unknown-linux-musl
