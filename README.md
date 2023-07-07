@@ -1,8 +1,5 @@
 # graphite-connector
-
-<div align="center">
-  <img src="./docs/images/diagram.png" />
-</div>
+Graphite Metrics Server Fluvio Sink Connector
 
 ## Usage
 

@@ -81,7 +81,7 @@ jobs:
 
       - name: Runs E2E tests
         timeout-minutes: 5
-        run: just e2e_test
+        run: just test_e2e
 
       - name: Run diagnostics
         if: ${{ !success() }}
