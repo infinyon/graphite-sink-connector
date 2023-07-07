@@ -16,24 +16,11 @@ jobs:
   test_e2e:
     name: Run E2E Tests
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-        rust:
-          - stable
-        rust-target:
-          - x86_64-unknown-linux-musl
-        check:
-          - test
-          - check
-          - fmt
-          - clippy
     env:
       RUST_BACKTRACE: full
-      RUST_LOG: "debug"
-      RUSTV: ${{ matrix.rust }}
-      TARGET: ${{ matrix.rust-target }}
+      RUST_LOG: debug
+      RUSTV: stable
+      TARGET: x86_64-unknown-linux-musl
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
