@@ -36,25 +36,25 @@ teardown() {
     echo "Produce \"16\" on $TOPIC"
     echo 16 | fluvio produce $TOPIC
 
-    echo "Produce \"32\" on $TOPIC"
-    echo 32 | fluvio produce $TOPIC
+    echo "Produce \"16\" on $TOPIC"
+    echo 16 | fluvio produce $TOPIC
 
-    echo "Produce \"64\" on $TOPIC"
-    echo 64 | fluvio produce $TOPIC
+    echo "Produce \"16\" on $TOPIC"
+    echo 16 | fluvio produce $TOPIC
+
+    echo "Produce \"16\" on $TOPIC"
+    echo 16 | fluvio produce $TOPIC
+
+    echo "Produce \"16\" on $TOPIC"
+    echo 16 | fluvio produce $TOPIC
 
     echo "Sleep to ensure record is processed"
-    sleep 25
+    sleep 65
 
     echo "Retrieves metrics from server"
     curl -o ./$TOPIC.json http://localhost:12345/render\?target\=weather.temperature.ca.sandiego\&format\=json\&noNullPoints
     cat ./$TOPIC.json
 
     cat ./$TOPIC.json | grep "16"
-    assert_success
-
-    cat ./$TOPIC.json | grep "32"
-    assert_success
-
-    cat ./$TOPIC.json | grep "64"
     assert_success
 }

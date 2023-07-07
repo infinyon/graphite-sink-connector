@@ -3,3 +3,4 @@
 /.graphite
 .DS_Store
 graphite-connector.log
+data.json

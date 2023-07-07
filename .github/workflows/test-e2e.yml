@@ -93,8 +93,17 @@ jobs:
         timeout-minutes: 5
         if: ${{ !success() }}
         with:
-          name: integration_${{ matrix.connector-name }}
+          name: diagnostics_${{ matrix.connector-name }}
           path: diagnostics*.gz
+          retention-days: 5
+
+      - name: Upload diagnostics
+        uses: actions/upload-artifact@v3
+        timeout-minutes: 5
+        if: ${{ !success() }}
+        with:
+          name: conn_logs_${{ matrix.connector-name }}
+          path: graphite-connector.log
           retention-days: 5
 
       - name: Stop containers
