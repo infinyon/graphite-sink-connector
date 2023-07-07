@@ -4,6 +4,5 @@ meta:
   type: graphite-connector-sink
   topic: test-graphite-connector-topic
 custom:
-  amqp_addr: amqp://localhost:5672
   # https://graphite.readthedocs.io/en/latest/feeding-carbon.html#step-1-plan-a-naming-hierarchy
   metric_path: "weather.temperature.ca.sandiego"

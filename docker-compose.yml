@@ -14,13 +14,3 @@ services:
     environment:
       #  Enable full debug page display on exceptions (Internal Server Error pages)
       GRAPHITE_DEBUG: True
-    depends_on:
-      - rabbitmq
-
-  rabbitmq:
-    image: rabbitmq:3.12.1
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-    ports:
-      - '5672:5672'

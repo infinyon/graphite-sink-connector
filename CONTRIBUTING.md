@@ -75,46 +75,6 @@ Host  | Container | Service
 The in-container directory `/opt/graphite/conf` is mapped to host's
 `.graphite/conf` directory to allow inspecting graphite's configuration files.
 
-This is relevant when sending events to Graphite via AMQP given that the
-variable `AMQP_METRIC_NAME_IN_BODY` determines the format of the message to
-send to Graphite via AMQP. [Read more on `Feeding In Your Data`][2].
-
-## Enabling AMQP
-
-Once you run the Docker container per the first time, you will see the
-`.graphite` directory created in the project directory.
-
-Visit the `carbon.conf` file on `.graphite/conf/carbon.conf` and make sure
-the option `ENABLE_AMQP` is set to `True`. You will also need to uncomment
-other AMQP related options, feel free to copy from below.
-
-```python
-# Enable AMQP if you want to receve metrics using an amqp broker
-ENABLE_AMQP = True
-
-# Verbose means a line will be logged for every metric received
-# useful for testing
-# AMQP_VERBOSE = False
-
-AMQP_HOST = rabbitmq
-AMQP_PORT = 5672
-AMQP_VHOST = /
-AMQP_USER = guest
-AMQP_PASSWORD = guest
-AMQP_EXCHANGE = graphite
-AMQP_METRIC_NAME_IN_BODY = True
-```
-
-Then rebuild and execute the container running:
-
-```bash
-just stop && just dev
-```
-
-> **Info** This approach is kinda hacky and requires an extra step to setup the
-> environment, so I decided to open an issue on Graphite Docker Image repository
-> asking for an easier setup. [Check it out here][3].
-
 ## Executing the Connnector
 
 ```bash
@@ -146,5 +106,3 @@ cdk deploy list
 ```
 
 [1]: https://github.com/graphite-project/docker-graphite-statsd/tree/276a5231d1fa5ab037adfb48abf9f971100e15bf#mapped-ports
-[2]: https://graphite.readthedocs.io/en/latest/feeding-carbon.html#using-amqp
-[3]: https://github.com/graphite-project/docker-graphite-statsd/issues/219
