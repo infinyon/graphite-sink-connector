@@ -5,3 +5,4 @@ meta:
   topic: TOPIC
 custom:
   metric_path: "weather.temperature.ca.sandiego"
+  plaintext_tcp_addr: "localhost:2003"

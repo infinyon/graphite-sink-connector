@@ -14,7 +14,7 @@ use self::graphite::GraphiteMessage;
 async fn start(config: CustomConfig, mut stream: impl ConsumerStream) -> Result<()> {
     println!("Starting graphite-connector sink connector with {config:?}");
 
-    let mut graphite_tcp = TcpStream::connect("127.0.0.1:2003")?;
+    let mut graphite_tcp = TcpStream::connect(config.plaintext_tcp_addr)?;
 
     while let Some(Ok(record)) = stream.next().await {
         let value_bytes = record.value();

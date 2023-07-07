@@ -6,3 +6,4 @@ meta:
 custom:
   # https://graphite.readthedocs.io/en/latest/feeding-carbon.html#step-1-plan-a-naming-hierarchy
   metric_path: "weather.temperature.ca.sandiego"
+  plaintext_tcp_addr: "localhost:2003"
