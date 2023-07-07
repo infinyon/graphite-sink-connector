@@ -45,8 +45,9 @@ teardown() {
     echo "Sleep to ensure record is processed"
     sleep 25
 
-    echo "Contains California on Logger File"
+    echo "Retrieves metrics from server"
     curl -o ./$TOPIC.json http://localhost:12345/render\?target\=weather.temperature.ca.sandiego\&format\=json\&noNullPoints
+    cat ./$TOPIC.json
 
     cat ./$TOPIC.json | grep "16"
     assert_success
