@@ -3,7 +3,19 @@ Graphite Metrics Server Fluvio Sink Connector
 
 ## Usage
 
-### Configure your Graphite instance to use AMQP
+This connectors establishes a TCP Stream against the specified host on Graphite,
+records are sent as UTF-8 encoded strings following Graphite's PlainText format.
 
-Graphite Connector uses **AMQP** (Advanced Message Queue Protocol) to send
-payloads to the Graphite instance.
+```yaml
+# sample-config.yaml
+apiVersion: 0.1.0
+meta:
+  version: 0.1.0
+  name: my-graphite-connector-test-connector
+  type: graphite-connector-sink
+  topic: test-graphite-connector-topic
+custom:
+  # https://graphite.readthedocs.io/en/latest/feeding-carbon.html#step-1-plan-a-naming-hierarchy
+  metric_path: "weather.temperature.ca.sandiego"
+  plaintext_tcp_addr: "localhost:2003"
+```
