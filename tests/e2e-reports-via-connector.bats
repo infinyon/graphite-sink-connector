@@ -61,4 +61,16 @@ teardown() {
 
     cat ./data.json | grep "20"
     assert_success
+
+    cat ./data.json | grep "25"
+    assert_success
+
+    cat ./data.json | grep "30"
+    assert_success
+
+    cat ./data.json | grep "35"
+    assert_success
+
+    cat ./data.json | grep "40"
+    assert_success
 }
