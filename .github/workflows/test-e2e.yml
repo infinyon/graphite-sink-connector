@@ -45,6 +45,14 @@ jobs:
       - name: Start Containers
         run: docker compose up -d --build
 
+      - name: Setup Retention Configuration
+        run: cp tests/conf/storage-schemas.conf .graphite/conf/storage-schemas.conf
+
+      - name: Restart Container to use Configuration
+        run: |
+          docker compose down
+          docker compose up -d --build
+
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
