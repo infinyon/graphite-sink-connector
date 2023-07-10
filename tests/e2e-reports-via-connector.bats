@@ -39,6 +39,7 @@ teardown() {
 
     echo "Produce \"25\" on $TOPIC"
     echo 25 | fluvio produce $TOPIC
+    sleep 10
 
     echo "Produce \"30\" on $TOPIC"
     echo 30 | fluvio produce $TOPIC
