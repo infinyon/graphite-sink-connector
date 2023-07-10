@@ -42,18 +42,18 @@ jobs:
           sleep 5
           ./actions/k3d-check.sh
 
-      - name: Start Containers
-        run: docker compose up -d --build
+      - name: Build, Start and Stop Containers
+        run: |
+          docker compose up --build -d
+          docker compose down
 
       - name: Setup Retention Configuration
         run: |
-          sudo rm ./.graphite/conf/storage-schemas.conf
-          sudo cp ./tests/conf/storage-schemas.conf ./.graphite/conf/storage-schemas.conf
+          sudo rm .graphite/conf/storage-schemas.conf
+          sudo cp tests/conf/storage-schemas.conf .graphite/conf/storage-schemas.conf
 
       - name: Restart Container to use Configuration
-        run: |
-          docker compose down
-          docker compose up -d --build
+        run: docker compose up -d --build
 
       - name: Install Rust
         uses: actions-rs/toolchain@v1
