@@ -52,10 +52,6 @@ impl GraphiteMessage {
 impl Display for GraphiteMessage {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         // <metric path> <metric value> <metric timestamp>
-        writeln!(
-            f,
-            "{} {} {}",
-            self.metric_path, self.value, self.timestamp
-        )
+        writeln!(f, "{} {} {}", self.metric_path, self.value, self.timestamp)
     }
 }
