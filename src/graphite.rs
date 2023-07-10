@@ -1,9 +1,7 @@
 //! Graphite's resources definitions
 
-use std::{
-    fmt::Display,
-    time::{SystemTime, UNIX_EPOCH},
-};
+use std::fmt::Display;
+use std::time::{SystemTime, UNIX_EPOCH};
 
 /// Graphite Message
 ///
@@ -54,9 +52,9 @@ impl GraphiteMessage {
 impl Display for GraphiteMessage {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         // <metric path> <metric value> <metric timestamp>
-        write!(
+        writeln!(
             f,
-            "{} {} {}\n",
+            "{} {} {}",
             self.metric_path, self.value, self.timestamp
         )
     }

@@ -21,7 +21,7 @@ async fn start(config: CustomConfig, mut stream: impl ConsumerStream) -> Result<
         let value_utf8 = String::from_utf8_lossy(value_bytes).to_string();
         let message = GraphiteMessage::new(config.metric_path.clone(), value_utf8);
 
-        graphite_tcp.write(message.to_string().as_bytes())?;
+        graphite_tcp.write_all(message.to_string().as_bytes())?;
     }
 
     Ok(())
