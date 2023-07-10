@@ -46,7 +46,7 @@ jobs:
         run: docker compose up -d --build
 
       - name: Setup Retention Configuration
-        run: cp tests/conf/storage-schemas.conf .graphite/conf/storage-schemas.conf
+        run: sudo cp ./tests/conf/storage-schemas.conf ./.graphite/conf/storage-schemas.conf
 
       - name: Restart Container to use Configuration
         run: |

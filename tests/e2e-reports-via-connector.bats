@@ -33,28 +33,32 @@ teardown() {
     echo "Using connector $CONNECTOR"
     sleep 45
 
-    echo "Produce \"16\" on $TOPIC"
-    echo 16 | fluvio produce $TOPIC
+    echo "Produce \"20\" on $TOPIC"
+    echo 20 | fluvio produce $TOPIC
+    sleep 10
 
-    echo "Produce \"16\" on $TOPIC"
-    echo 16 | fluvio produce $TOPIC
+    echo "Produce \"25\" on $TOPIC"
+    echo 25 | fluvio produce $TOPIC
 
-    echo "Produce \"16\" on $TOPIC"
-    echo 16 | fluvio produce $TOPIC
+    echo "Produce \"30\" on $TOPIC"
+    echo 30 | fluvio produce $TOPIC
+    sleep 10
 
-    echo "Produce \"16\" on $TOPIC"
-    echo 16 | fluvio produce $TOPIC
+    echo "Produce \"35\" on $TOPIC"
+    echo 35 | fluvio produce $TOPIC
+    sleep 10
 
-    echo "Produce \"16\" on $TOPIC"
-    echo 16 | fluvio produce $TOPIC
+    echo "Produce \"40\" on $TOPIC"
+    echo 40 | fluvio produce $TOPIC
+    sleep 10
 
     echo "Sleep to ensure record is processed"
-    sleep 65
+    sleep 45
 
     echo "Retrieves metrics from server"
     curl -o ./$TOPIC.json http://localhost:12345/render\?target\=weather.temperature.ca.sandiego\&format\=json\&noNullPoints
     cat ./$TOPIC.json
 
-    cat ./$TOPIC.json | grep "16"
+    cat ./$TOPIC.json | grep "20"
     assert_success
 }
