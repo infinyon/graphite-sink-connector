@@ -56,9 +56,9 @@ teardown() {
     sleep 45
 
     echo "Retrieves metrics from server"
-    curl -o ./$TOPIC.json http://localhost:12345/render\?target\=weather.temperature.ca.sandiego\&format\=json\&noNullPoints
-    cat ./$TOPIC.json
+    curl -o ./data.json http://localhost:12345/render\?target\=weather.temperature.ca.sandiego\&format\=json\&noNullPoints
+    cat ./data.json
 
-    cat ./$TOPIC.json | grep "20"
+    cat ./data.json | grep "20"
     assert_success
 }

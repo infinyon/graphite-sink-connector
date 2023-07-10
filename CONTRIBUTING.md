@@ -99,4 +99,16 @@ cdk deploy list
  cdk deploy shutdown --name my-graphite-connector-test-connector
 ```
 
+## CI E2E Tests
+
+For CI we are using the same setup as for local development:
+
+1. Spin up a Graphite Instance using Docker
+2. Update `storage-schemas.conf` configuration files to have 10s:12h retention
+3. Restart containers to use new `storage-schemas.conf` file
+4. Use CDK to build local Connector source and deploy to the host
+5. Produce on connector's topic
+6. cURL to Graphite API and output JSON to a file
+7. Check on file output for data
+
 [1]: https://github.com/graphite-project/docker-graphite-statsd/tree/276a5231d1fa5ab037adfb48abf9f971100e15bf#mapped-ports
