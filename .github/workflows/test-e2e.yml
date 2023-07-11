@@ -1,0 +1,121 @@
+name: Test E2E
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "**"
+      - "!/*.md"
+      - "!/**.md"
+
+concurrency:
+  group: "${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  test_e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    env:
+      RUST_BACKTRACE: full
+      RUST_LOG: debug
+      RUSTV: stable
+      TARGET: x86_64-unknown-linux-musl
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Install musl-tools
+        run: |
+          set -ex
+          sudo apt-get update
+          sudo apt-get install -y musl-tools
+
+      - name: Create fluvio k3d Cluster
+        uses: AbsaOSS/k3d-action@v2.4.0
+        with:
+          cluster-name: "fluvio"
+          args: --timeout 5m
+
+      - name: Ensure k3d cluster is ready
+        run: |
+          sleep 5
+          ./actions/k3d-check.sh
+
+      - name: Build, Start and Stop Containers
+        run: |
+          docker compose up --build -d
+          docker compose down
+
+      - name: Setup Retention Configuration
+        run: |
+          sudo rm .graphite/conf/storage-schemas.conf
+          sudo cp tests/conf/storage-schemas.conf .graphite/conf/storage-schemas.conf
+
+      - name: Restart Container to use Configuration
+        run: docker compose up -d --build
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          target: x86_64-unknown-linux-musl
+          toolchain: stable
+          profile: minimal
+
+      - name: Setup Rust Cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install Fluvio Local Cluster
+        timeout-minutes: 10
+        uses: infinyon/fluvio@master
+        with:
+          cluster-type: k3d
+          version: stable
+
+      - name: Install Just
+        uses: extractions/setup-just@v1
+        with:
+          just-version: '1.13.0'
+
+      - name: Check Fluvio Installation
+        run: just test_fluvio_install
+
+      - name: Install Fluvio CDK
+        run: fluvio install cdk --develop
+
+      - name: Build Connector
+        run: cdk build --target x86_64-unknown-linux-musl
+
+      - name: Setup BATS
+        uses: mig4/setup-bats@v1
+
+      - name: Runs E2E tests
+        timeout-minutes: 5
+        run: just test_e2e
+
+      - name: Run diagnostics
+        if: ${{ !success() }}
+        timeout-minutes: 5
+        run: fluvio cluster diagnostics
+
+      - name: Upload diagnostics
+        uses: actions/upload-artifact@v3
+        timeout-minutes: 5
+        if: ${{ !success() }}
+        with:
+          name: diagnostics_${{ matrix.connector-name }}
+          path: diagnostics*.gz
+          retention-days: 5
+
+      - name: Upload diagnostics
+        uses: actions/upload-artifact@v3
+        timeout-minutes: 5
+        if: ${{ !success() }}
+        with:
+          name: conn_logs_${{ matrix.connector-name }}
+          path: graphite-connector.log
+          retention-days: 5
+
+      - name: Stop containers
+        if: always()
+        run: docker compose down

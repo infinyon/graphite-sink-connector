@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  graphite:
+    image: graphiteapp/graphite-statsd:1.1.10-4
+    ports:
+      - '12345:80'
+      - '2003-2004:2003-2004'
+      - '2023-2024:2023-2024'
+      - '8125:8125/udp'
+      - '8126:8126'
+    volumes:
+      - ./.graphite/conf:/opt/graphite/conf
+    environment:
+      #  Enable full debug page display on exceptions (Internal Server Error pages)
+      GRAPHITE_DEBUG: True
