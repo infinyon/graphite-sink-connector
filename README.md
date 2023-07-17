@@ -1,4 +1,4 @@
-# graphite-connector
+# graphite-sink
 Graphite Metrics Server Fluvio Sink Connector
 
 ## Usage

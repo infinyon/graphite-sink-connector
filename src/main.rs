@@ -12,8 +12,6 @@ use self::graphite::GraphiteMessage;
 
 #[connector(sink)]
 async fn start(config: CustomConfig, mut stream: impl ConsumerStream) -> Result<()> {
-    println!("Starting graphite-connector sink connector with {config:?}");
-
     let mut graphite_tcp = TcpStream::connect(config.addr)?;
 
     while let Some(Ok(record)) = stream.next().await {

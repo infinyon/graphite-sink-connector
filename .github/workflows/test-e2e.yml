@@ -113,7 +113,7 @@ jobs:
         if: ${{ !success() }}
         with:
           name: conn_logs_${{ matrix.connector-name }}
-          path: graphite-connector.log
+          path: graphite-sink.log
           retention-days: 5
 
       - name: Stop containers
