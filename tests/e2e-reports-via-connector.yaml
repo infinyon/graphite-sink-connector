@@ -2,7 +2,7 @@ apiVersion: 0.1.0
 meta:
   version: VERSION
   name: CONNECTOR
-  type: graphite-connector-sink
+  type: graphite-sink
   topic: TOPIC
 graphite:
   # https://graphite.readthedocs.io/en/latest/feeding-carbon.html#step-1-plan-a-naming-hierarchy

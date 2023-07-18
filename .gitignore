@@ -2,5 +2,5 @@
 /.hub
 /.graphite
 .DS_Store
-graphite-connector.log
+graphite-sink.log
 data.json

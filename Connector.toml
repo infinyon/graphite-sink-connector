@@ -1,5 +1,5 @@
 [package]
-name = "graphite-connector"
+name = "graphite-sink"
 group = "infinyon"
 version = "0.1.0"
 apiVersion = "0.1.0"
@@ -9,12 +9,17 @@ license = "Apache-2.0"
 visibility = "public"
 
 [direction]
- dest = true 
+ dest = true
 
 [deployment]
-binary = "graphite-connector"
+binary = "graphite-sink"
 
-[custom.properties.foo]
-title = "Foo"
-description = "Foo"
+[graphite.properties.metric-path]
+title = "Metric Path"
+description = "Metric namespace to populate"
+type = "string"
+
+[graphite.properties.addr]
+title = "Address"
+description = "TCP Address to send metrics"
 type = "string"

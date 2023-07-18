@@ -1372,7 +1372,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "graphite-connector"
+name = "graphite-sink"
 version = "0.1.0"
 dependencies = [
  "fluvio",
