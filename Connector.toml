@@ -1,6 +1,6 @@
 [package]
 name = "graphite-sink"
-group = "infinyon"
+group = "infinyon-labs"
 version = "0.1.0"
 apiVersion = "0.1.0"
 fluvio = "0.10.0"
