@@ -1,11 +1,11 @@
 # InfinyOn Graphite Sink Connector
-The Graphite Sink connector reads records from Fluvio topic and sends them to
+The [Graphite][4] Sink connector reads records from Fluvio topic and sends them to
 the configured Graphite's Metric using the PlainText approach.
 
 # Configuration
 
 This connectors establishes a TCP Stream against the specified host on Graphite,
-records are sent as UTF-8 encoded strings following Graphite's PlainText format.
+records are sent as UTF-8 encoded strings following [Graphite's PlainText][5] format.
 
 The following example connector configuration can be used to send records to
 the Graphite's Metric `weather.temperature.ca.sandiego`, the Graphite's TCP
@@ -42,7 +42,7 @@ Setup a Graphite instance for local development, you can follow the recipe used
 to contribute to the official InfinyOn connector [here][3].
 
 Reduce the Graphite's data retention interval by updating `storage-schemas.conf`
-file for Carbon:
+file for [Carbon][6]:
 
 ```conf
 [all]
@@ -92,3 +92,6 @@ curl -o ./data.json http://localhost:12345/render\?target\=weather.temperature.c
 [1]: https://infinyon.cloud/login
 [2]: https://www.fluvio.io/cli/
 [3]: https://github.com/infinyon/graphite-sink-connector/blob/main/CONTRIBUTING.md
+[4]: https://graphiteapp.org/
+[5]: https://graphite.readthedocs.io/en/latest/feeding-carbon.html#the-plaintext-protocol
+[6]: https://graphite.readthedocs.io/en/latest/config-carbon.html#storage-schemas-conf
