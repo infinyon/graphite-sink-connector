@@ -15,7 +15,7 @@ server address is specified on the `addr` field.
 # sample-config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.1.0
+  version: 0.1.1
   name: my-graphite-connector-test-connector
   type: graphite-sink
   topic: test-graphite-connector-topic
@@ -64,7 +64,7 @@ Create a YAML file with the name `weather-monitor-config.yaml` and specify conne
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.1.0
+  version: 0.1.1
   name: weather-monitor-sandiego
   type: graphite-sink
   topic: weather-ca-sandiego
