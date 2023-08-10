@@ -74,7 +74,7 @@ docker compose down
 docker compose up --build -d
 ```
 
-You can visit `http://localhosh:12345` in your browser to access the Dashboard.
+You can visit `http://localhost:12345` in your browser to access the Dashboard.
 
 > Credentials for the Dashbord are User: `root` and Password: `root`
 

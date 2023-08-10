@@ -39,7 +39,7 @@ graphite-connector-graphite-1  | down: redis: 1s, normally up, want up
 graphite-connector-graphite-1  | run: statsd: (pid 70) 5s; run: log: (pid 69) 5s
 ```
 
-Visit `http://localhosh:12345` in your browser to access the Dashboard.
+Visit `http://localhost:12345` in your browser to access the Dashboard.
 
 <div align="left">
   <img width="1080" src="./docs/images/graphite_dashboard.png" />
