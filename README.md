@@ -15,7 +15,7 @@ server address is specified on the `addr` field.
 # sample-config.yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.1.2
+  version: 0.2.0
   name: my-graphite-connector-test-connector
   type: graphite-sink
   topic: test-graphite-connector-topic
@@ -85,12 +85,6 @@ With the Graphite instance set, we can move into [Setting Up Fluvio with Graphit
 In this section we are going use the CDK to spin up the Graphite Sink Connector
 to send metrics from Fluvio Records to the Graphite instance.
 
-Make sure the Connector Development Kit is setup in your system by issuing
-the following command in your terminal.
-
-```bash
-fluvio install cdk
-```
 
 > If you dont have the Fluvio CLI installed already visit the [CLI][2] section
 
@@ -99,7 +93,7 @@ Create a YAML file with the name `weather-monitor-config.yaml` and specify conne
 ```yaml
 apiVersion: 0.1.0
 meta:
-  version: 0.1.2
+  version: 0.2.0
   name: weather-monitor-sandiego
   type: graphite-sink
   topic: weather-ca-sandiego

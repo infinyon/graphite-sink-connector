@@ -1,9 +1,9 @@
 [package]
 name = "graphite-sink"
 group = "infinyon-labs"
-version = "0.1.2"
+version = "0.2.0"
 apiVersion = "0.1.0"
-fluvio = "0.10.0"
+fluvio = "0.11.9"
 description = ""
 license = "Apache-2.0"
 visibility = "public"
