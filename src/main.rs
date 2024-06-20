@@ -4,6 +4,8 @@ mod graphite;
 use std::io::Write;
 use std::net::TcpStream;
 
+use futures::StreamExt;
+
 use fluvio_connector_common::consumer::ConsumerStream;
 use fluvio_connector_common::{connector, Result};
 
